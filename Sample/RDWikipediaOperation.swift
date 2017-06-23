@@ -12,24 +12,52 @@ import Foundation
 class RDWikipediaOperation : RDLoadOperation<[RDWikipediaRecord]> {
     
     private let semaphore:DispatchSemaphore = DispatchSemaphore(value: 0)
+    private var result:(Any?, URLResponse?, Error?)? = nil
     
-    override func load() -> Error? {
-        let error = super.load()
+    override func getError() -> Error? {
+        return result?.2
+    }
+    
+    override func main() {
+        let result = load()
+        if let raw = result?.0 {
+            let json = JSONValue.wrap(json: raw)
+            if let jsonlist:[JSONValue] = json.dictionary!["query"]?.dictionary?["random"]?.array {
+                let records = jsonlist.flatMap { RDWikipediaRecord(raw: $0) }
+                data = records
+            }
+        }
+    }
+    
+    func load() -> (Any?, URLResponse?, Error?)? {
         
-        let url = NSURL(string: "https://ja.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=10&format=jsonfm&utf8=")!
-        let task = URLSession.shared.dataTask(with:url.absoluteURL!) {[weak self] (data, response, error) in
+        let url_ns = NSURL(string: "https://ja.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=10&format=json&utf8=")!
+        let url = url_ns.absoluteURL!
+        
+        var request = URLRequest(url: url, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 30)
+        request.setValue("SampleApp", forHTTPHeaderField: "User-Agent")
+        request.httpMethod = "GET"
+        
+        
+        let task = URLSession.shared.dataTask(with: request) {[weak self] (data, response, error_) in
             
+//            if let str = String(data:data!, encoding:.utf8) {
+//                print("\(str)")
+//            }
+            
+            
+            var json:Any? = nil
+            var error = error_
             if let data = data {
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    print(json)
-                } catch {
-                    print("s e")
+                    let json_ = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                    json = json_
+                } catch let e {
+                    error = e
                 }
             }
             
-            print("response \(response)")
-            print("error \(error)")
+            self?.result = (json, response, error)
             self?.semaphore.signal()
         }
         
@@ -37,6 +65,8 @@ class RDWikipediaOperation : RDLoadOperation<[RDWikipediaRecord]> {
         semaphore.wait()
         
         
-        return error
+        
+        
+        return result
     }
 }

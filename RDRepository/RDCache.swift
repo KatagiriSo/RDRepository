@@ -75,12 +75,12 @@ class RDCache<T, O:RDLoadOperation<T>>  {
         self.isLoading = true
         
         operation.completionBlock = { [weak self] in
-            if operation.error == nil {
+            if operation.getError() == nil {
                 self?.reloadFinish(operation:operation)
                 self?.lastLoadDateTime = Date()
             }
             self?.isLoading = false
-            self?.loadFinish(error: operation.error)
+            self?.loadFinish(error: operation.getError())
             
             operation.completionBlock = nil
         }
@@ -96,7 +96,7 @@ class RDCache<T, O:RDLoadOperation<T>>  {
     
     func load(completion:@escaping (T?, Error?) -> Void) {
         objc_sync_enter(self.loadCompletions)
-        loadCompletions.append(completion)
+        loadCompletions = loadCompletions + [completion]
         objc_sync_exit(self.loadCompletions)
         
         self.load()
@@ -104,7 +104,8 @@ class RDCache<T, O:RDLoadOperation<T>>  {
     
     func reload(completion:@escaping (T?, Error?) -> Void) {
         objc_sync_enter(self.loadCompletions)
-        loadCompletions.append(completion)
+//        loadCompletions.append(completion)
+        loadCompletions = loadCompletions + [completion]
         objc_sync_exit(self.loadCompletions)
         
         self.reload()
@@ -113,7 +114,7 @@ class RDCache<T, O:RDLoadOperation<T>>  {
     func loadFinish(error: Error?) {
         let completions = self.loadCompletions
         let result = cache
-        self.loadCompletions = []
+        loadCompletions = []
         DispatchQueue.global().async {
             completions.forEach {
                 $0(result, error)

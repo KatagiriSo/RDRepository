@@ -12,4 +12,22 @@ struct RDWikipediaRecord : RDRecord {
     let id:Int
     let ns:Int
     let title:String
+    
+    init?(raw:JSONValue) {
+        guard let id = raw.dictionary?["id"]?.number?.intValue else {
+            return nil
+        }
+        
+        guard  let ns = raw.dictionary?["ns"]?.number?.intValue else {
+            return nil
+        }
+        
+        guard let title = raw.dictionary?["title"]?.string else {
+            return nil
+        }
+        self.id = id
+        self.ns = ns
+        self.title = title
+    }
+    
 }

@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		321F07611EFCDEBE001102EC /* RDRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F07601EFCDEBE001102EC /* RDRecord.swift */; };
+		321F07631EFCDEE6001102EC /* RDLoadOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F07621EFCDEE6001102EC /* RDLoadOperation.swift */; };
+		321F07651EFCDF2F001102EC /* RDCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F07641EFCDF2F001102EC /* RDCache.swift */; };
+		321F076B1EFCE915001102EC /* RDWikipediaOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F07671EFCE915001102EC /* RDWikipediaOperation.swift */; };
+		321F076C1EFCE915001102EC /* RDWikipediaCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F07681EFCE915001102EC /* RDWikipediaCache.swift */; };
+		321F076D1EFCE915001102EC /* RDWikipediaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F07691EFCE915001102EC /* RDWikipediaManager.swift */; };
+		321F076E1EFCE915001102EC /* RDWikipediaRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F076A1EFCE915001102EC /* RDWikipediaRecord.swift */; };
+		321F07701EFCFB6E001102EC /* RDJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 321F076F1EFCFB6E001102EC /* RDJSON.swift */; };
 		32A3C07E1EF7A4C3009585F1 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A3C07D1EF7A4C3009585F1 /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +31,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		321F07601EFCDEBE001102EC /* RDRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDRecord.swift; sourceTree = "<group>"; };
+		321F07621EFCDEE6001102EC /* RDLoadOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDLoadOperation.swift; sourceTree = "<group>"; };
+		321F07641EFCDF2F001102EC /* RDCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RDCache.swift; sourceTree = "<group>"; };
+		321F07671EFCE915001102EC /* RDWikipediaOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RDWikipediaOperation.swift; path = Sample/RDWikipediaOperation.swift; sourceTree = "<group>"; };
+		321F07681EFCE915001102EC /* RDWikipediaCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RDWikipediaCache.swift; path = Sample/RDWikipediaCache.swift; sourceTree = "<group>"; };
+		321F07691EFCE915001102EC /* RDWikipediaManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RDWikipediaManager.swift; path = Sample/RDWikipediaManager.swift; sourceTree = "<group>"; };
+		321F076A1EFCE915001102EC /* RDWikipediaRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RDWikipediaRecord.swift; path = Sample/RDWikipediaRecord.swift; sourceTree = "<group>"; };
+		321F076F1EFCFB6E001102EC /* RDJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RDJSON.swift; path = Sample/RDJSON.swift; sourceTree = "<group>"; };
 		32A3C07A1EF7A4C3009585F1 /* RDRepository */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RDRepository; sourceTree = BUILT_PRODUCTS_DIR; };
-		32A3C07D1EF7A4C3009585F1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		32A3C07D1EF7A4C3009585F1 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = main.swift; path = Sample/main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,9 +54,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		321F07661EFCE8CC001102EC /* Sample */ = {
+			isa = PBXGroup;
+			children = (
+				321F07671EFCE915001102EC /* RDWikipediaOperation.swift */,
+				321F07681EFCE915001102EC /* RDWikipediaCache.swift */,
+				321F07691EFCE915001102EC /* RDWikipediaManager.swift */,
+				321F076A1EFCE915001102EC /* RDWikipediaRecord.swift */,
+				32A3C07D1EF7A4C3009585F1 /* main.swift */,
+				321F076F1EFCFB6E001102EC /* RDJSON.swift */,
+			);
+			name = Sample;
+			sourceTree = "<group>";
+		};
 		32A3C0711EF7A4C3009585F1 = {
 			isa = PBXGroup;
 			children = (
+				321F07661EFCE8CC001102EC /* Sample */,
 				32A3C07C1EF7A4C3009585F1 /* RDRepository */,
 				32A3C07B1EF7A4C3009585F1 /* Products */,
 			);
@@ -57,7 +87,9 @@
 		32A3C07C1EF7A4C3009585F1 /* RDRepository */ = {
 			isa = PBXGroup;
 			children = (
-				32A3C07D1EF7A4C3009585F1 /* main.swift */,
+				321F07641EFCDF2F001102EC /* RDCache.swift */,
+				321F07621EFCDEE6001102EC /* RDLoadOperation.swift */,
+				321F07601EFCDEBE001102EC /* RDRecord.swift */,
 			);
 			path = RDRepository;
 			sourceTree = "<group>";
@@ -121,7 +153,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				321F07611EFCDEBE001102EC /* RDRecord.swift in Sources */,
+				321F07701EFCFB6E001102EC /* RDJSON.swift in Sources */,
+				321F07651EFCDF2F001102EC /* RDCache.swift in Sources */,
+				321F076D1EFCE915001102EC /* RDWikipediaManager.swift in Sources */,
 				32A3C07E1EF7A4C3009585F1 /* main.swift in Sources */,
+				321F07631EFCDEE6001102EC /* RDLoadOperation.swift in Sources */,
+				321F076B1EFCE915001102EC /* RDWikipediaOperation.swift in Sources */,
+				321F076C1EFCE915001102EC /* RDWikipediaCache.swift in Sources */,
+				321F076E1EFCE915001102EC /* RDWikipediaRecord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +293,7 @@
 				32A3C0831EF7A4C3009585F1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

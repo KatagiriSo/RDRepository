@@ -9,17 +9,13 @@
 import Foundation
 
 class RDLoadOperation<T> : Operation {
-    var error:Error? = nil
     var data:T? = nil
     
-    func load() -> Error? {
-        return nil
+    func getError() -> Error? {
+        return  nil
     }
     
     override func main() {
-        autoreleasepool {
-            self.error = load()
-        }
     }
     
     override var isConcurrent: Bool {
